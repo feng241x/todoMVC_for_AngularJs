@@ -70,5 +70,27 @@
 			[].push.apply(todoList,tempArr)
 		}
 
+		vm.isShow = function () {
+			var ret = false;
+			for(var i=0;i<todoList.length;i++){
+				if(todoList[i].isCompleted){
+					ret = true;
+					break;
+				}
+			}
+			return ret;
+		}
+
+		// 7、显示未完成任务数
+		vm.getCount = function(){
+			var count = 0;
+			for(var i=0;i<todoList.length;i++){
+				if(!todoList[i].isCompleted){
+					count++;
+				}
+			}
+			return count;
+		}
+
 	}
 })(angular);
