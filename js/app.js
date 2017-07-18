@@ -27,5 +27,16 @@
 			vm.taskName = '';
 		}
 
+		// 3、删除一条任务
+		vm.del = function(id) {
+			todoList.splice(id,1);
+			// for(var i=0;i<todoList.length;i++){
+			// 	if(todoList[i].id === id){
+			// 		todoList.splice(i,1);
+			// 		return;
+			// 	}
+			// }
+		}
+
 	}
 })(angular);
