@@ -38,5 +38,14 @@
 			// }
 		}
 
+		// 4、修改一条任务
+		vm.editingId = -1;
+		vm.edit = function (id){
+			vm.editingId = id;
+		};
+		vm.editSave = function(){
+			vm.editingId = -1;
+		}
+
 	}
 })(angular);
