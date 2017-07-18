@@ -47,5 +47,28 @@
 			vm.editingId = -1;
 		}
 
+		// 5、切换任务选中状态
+		vm.isCheckedAll = false;
+		vm.checkAll = function (){
+			console.log('123')
+			//根据全选按钮选中状态 来控制所有任务项的选中状态
+			for(var i=0;i<todoList.length;i++){
+				todoList[i].isCompleted = vm.isCheckedAll;
+			}
+		}
+
+		// 6、清除已完成任务
+		vm.delCompleted = function(){
+			//清空数组
+			var tempArr = [];
+			for(var i=0;i<todoList.length;i++){
+				if(!todoList[i].isCompleted){
+					tempArr.push(todoList[i])
+				}
+			}
+			todoList.length = 0;
+			[].push.apply(todoList,tempArr)
+		}
+
 	}
 })(angular);
