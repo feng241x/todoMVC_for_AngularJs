@@ -44,13 +44,13 @@
 			<!-- Remove this if you don't implement routing -->
 			<ul class="filters">
 				<li>
-					<a ng-class="{selected:status===undefined}" href="#/" ng-click="selectorAll()">All</a>
+					<a ng-class="{selected:status===undefined}" href="#!/">All</a>
 				</li>
 				<li>
-					<a ng-class="{selected:status===false}" href="#/active" ng-click="selectorActive()">Active</a>
+					<a ng-class="{selected:status===false}" href="#!/active">Active</a>
 				</li>
 				<li>
-					<a ng-class="{selected:status===true}" href="#/completed" ng-click="selectorCompleted()">Completed</a>
+					<a ng-class="{selected:status===true}" href="#!/completed">Completed</a>
 				</li>
 			</ul>
 			<!-- Hidden if no completed items are left ↓ -->

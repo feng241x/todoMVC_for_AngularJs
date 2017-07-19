@@ -2,12 +2,16 @@
 	'use strict';
 	angular
 		.module('todoApp',[])
-		.controller('TodoController',['$scope',TodoController])
+		.controller('TodoController',['$scope','$location',TodoController])
 
-	function TodoController ($scope){
+	function TodoController ($scope,$location){
 		// 1、展示任务列表
 		var vm = $scope;
-		var todoList = []
+		var todoList = [
+			{id:1,name:'抽烟',isCompleted:false},
+			{id:2,name:'喝酒',isCompleted:true},
+			{id:3,name:'烫头',isCompleted:false}
+		]
 		vm.todoList = todoList;
 
 		// 2、添加任务
@@ -94,15 +98,30 @@
 		
 		// 8、显示不同状态的任务
 		vm.status = undefined;
-		vm.selectorAll = function(){
-			vm.status = undefined;
-		}
-		vm.selectorActive = function(){
-			vm.status = false;
-		}
-		vm.selectorCompleted = function(){
-			vm.status = true;
-		}
+		// vm.selectorAll = function(){
+		// 	vm.status = undefined;
+		// }
+		// vm.selectorActive = function(){
+		// 	vm.status = false;
+		// }
+		// vm.selectorCompleted = function(){
+		// 	vm.status = true;
+		// }
 
+		// 9、根据url值来显示不同状态任务
+		vm.location = $location;
+		vm.$watch('location.url()',function(newV,oldV){
+			switch(newV){
+				case '/active':
+					vm.status = false;
+					break;
+				case '/completed':
+					vm.status = true;
+					break;
+				default:
+					vm.status = undefined;
+					break;
+			}
+		})
 	}
 })(angular);
