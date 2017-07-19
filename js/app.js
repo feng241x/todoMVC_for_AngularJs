@@ -91,6 +91,18 @@
 			}
 			return count;
 		}
+		
+		// 8、显示不同状态的任务
+		vm.status = undefined;
+		vm.selectorAll = function(){
+			vm.status = undefined;
+		}
+		vm.selectorActive = function(){
+			vm.status = false;
+		}
+		vm.selectorCompleted = function(){
+			vm.status = true;
+		}
 
 	}
 })(angular);
