@@ -2,9 +2,9 @@
 	'use strict';
 	angular
 		.module('todoApp.ctrl',[])
-		.controller('TodoController',['$scope','$location','todoSrv',TodoController])
+		.controller('TodoController',['$scope','$location','$routeParams','todoSrv',TodoController])
 
-		function TodoController ($scope,$location,todoSrv){
+		function TodoController ($scope,$location,$routeParams,todoSrv){
 			// 1、展示任务列表
 			var vm = $scope;
 			
@@ -67,21 +67,39 @@
 			// vm.selectorCompleted = function(){
 			// 	vm.status = true;
 			// }
-
+			// 路由执行的过程
+			// 1、用户单击 active 这个a链接 改变url中的锚点值
+			// 2、锚点值发生变化以后 angular 能够感知到这个变化 angular会监视锚点值得变化
+			// 3、此时 路由机制就会根据当前的锚点值 重新匹配路由规则
+			// 4、 当某个路由规则匹配以后 angular会吧这个规则对应的视图内容通过ajax
+			//     请求获取到 并且展示到页面中 (ng-view)
+			// 5、这个规则对应的控制器中的代码也会被执行
+			var status = $routeParams.status;
+			switch(status){
+				case 'active':
+					vm.status = false;
+					break;
+				case 'completed':
+					vm.status = true;
+					break;
+				default:
+					vm.status = undefined;
+					break;
+			}
 			// 9、根据url值来显示不同状态任务
-			vm.location = $location;
-			vm.$watch('location.url()',function(newV,oldV){
-				switch(newV){
-					case '/active':
-						vm.status = false;
-						break;
-					case '/completed':
-						vm.status = true;
-						break;
-					default:
-						vm.status = undefined;
-						break;
-				}
-			})
+			// vm.location = $location;
+			// vm.$watch('location.url()',function(newV,oldV){
+			// 	switch(newV){
+			// 		case '/active':
+			// 			vm.status = false;
+			// 			break;
+			// 		case '/completed':
+			// 			vm.status = true;
+			// 			break;
+			// 		default:
+			// 			vm.status = undefined;
+			// 			break;
+			// 	}
+			// })
 		}
 })(angular)
